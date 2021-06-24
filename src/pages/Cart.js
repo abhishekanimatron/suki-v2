@@ -17,6 +17,7 @@ import { selectItems, selectTotal } from "../slices/basketSlice";
 import * as ROUTES from "../constants/routes";
 import { Link } from "react-router-dom";
 import CheckoutProduct from "../components/cart/CheckoutProduct";
+import StripeCheckoutButton from "../components/stripe-button/stripe-button";
 
 export default function Cart() {
   const items = useSelector(selectItems);
@@ -146,6 +147,11 @@ export default function Cart() {
                     <p id="continue-shopping-btn">Continue Shopping</p>
                   </Link>
                 </div>
+                <div id='test-warning'>
+                  *Please use the following test credit card for payments*
+                  <br/>
+                  4242 4242 4242 4242 -Exp: 01/23  - CVV:123
+                </div>
                 <div id="hero-right">
                   <h4>
                     Subtotal: <span>$ {total} USD</span>
@@ -172,6 +178,8 @@ export default function Cart() {
                   >
                     {isUserLoggedIn ? "Check Out" : "Sign in please"}
                   </button>
+
+                  <StripeCheckoutButton price={total} />
                   {/* </Link> */}
                   <p id="before-taxes-info">Before taxes & shipping costs</p>
                 </div>
