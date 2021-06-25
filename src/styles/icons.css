@@ -1,0 +1,20 @@
+@media (max-width: 1366px) {
+  #menu-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  #account-icon {
+    float: left;
+  }
+  #search-icon {
+    float: left;
+  }
+  #menu-icon {
+    display: inline-block;
+  }
+  #suki-logo {
+    margin-left: 0;
+  }
+}

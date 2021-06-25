@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=KoHo:wght@200;400;600&display=swap");
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow-x: hidden;
+  font-family: "KoHo", sans-serif;
+}

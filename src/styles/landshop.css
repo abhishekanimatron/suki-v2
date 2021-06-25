@@ -1,0 +1,20 @@
+.item-name {
+  padding: 1px;
+  margin: 0.5rem 0 0 0;
+  background-color: white;
+}
+.item-price {
+  background-color: white;
+  padding: 1px;
+  font-weight: lighter;
+  font-size: small;
+}
+.sell-price {
+  background-color: white;
+  opacity: 0.8;
+  text-decoration: line-through;
+}
+.shop-text {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

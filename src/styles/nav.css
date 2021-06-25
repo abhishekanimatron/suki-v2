@@ -1,0 +1,63 @@
+/* Drop Down Menu  */
+.btn-primary {
+  color: black;
+  background-color: transparent;
+  border: none;
+}
+.btn-primary:active {
+  color: black;
+  background-color: transparent;
+  cursor: pointer;
+}
+.btn-primary:focus {
+  color: black;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  color: rgb(75, 161, 187);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+/* Drop down items */
+
+.menu-item,
+.dropdown-item {
+  margin: 0;
+  display: block;
+  background-color: pink;
+  color: white;
+}
+.menu-item,
+.dropdown-item:hover {
+  display: block;
+}
+
+.menu-item,
+.dropdown-item:active {
+  display: block;
+  background-color: #ffd4ea;
+}
+
+.dropdown-menu {
+  padding: 0;
+  border-radius: 0;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
