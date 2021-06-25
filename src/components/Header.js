@@ -5,57 +5,70 @@ import "../styles/icons.css";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
-import MenuIcon from "@material-ui/icons/Menu";
 import { selectItems } from "../slices/basketSlice";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import Search from "./Search";
 
 export default function Header() {
+  const [search, setSearch] = useState(false);
+  const handleSearch = () => {
+    setSearch(!search);
+  };
   const items = useSelector(selectItems);
-
   return (
-    <div>
-      <Wrap>
-        <Link to={ROUTES.HOME}>
-          <img id="suki-logo" src="/images/TSUKI_360x.png" alt="TSUKI" />
-        </Link>
-        <Icon id="menu-icon">
-          <MenuIcon />
-        </Icon>
-        <Link
-          to={ROUTES.CART}
-          style={{
-            textDecoration: "none",
-            color: "black",
-          }}
-        >
-          <div id="cart-icon">
-            <ShoppingCartRoundedIcon />
-            {items.length!==0&& (<span > {items.length}</span>)}
-            
-            {/* <Icon id="cart-icon">
+    <>
+      <Container>
+        {search && <Search />}
+        <Wrap>
+          <Link to={ROUTES.HOME}>
+            <img id="suki-logo" src="/images/TSUKI_360x.png" alt="TSUKI" />
+          </Link>
+          <Link
+            to={ROUTES.CART}
+            style={{
+              textDecoration: "none",
+              color: "black",
+            }}
+          >
+            <div id="cart-icon">
               <ShoppingCartRoundedIcon />
-            </Icon> */}
-          </div>
-        </Link>
-        <Icon id="search-icon">
-          <SearchRoundedIcon />
-        </Icon>
-        <Link
-          to={ROUTES.LOGIN}
-          style={{
-            textDecoration: "none",
-            color: "black",
-          }}
-        >
-          <Icon id="account-icon">
-            <AccountCircleOutlinedIcon />
+              {items.length !== 0 && <span> {items.length}</span>}
+            </div>
+          </Link>
+          <Icon onClick={handleSearch} id="search-icon">
+            <SearchRoundedIcon />
           </Icon>
-        </Link>
-      </Wrap>
-    </div>
+          <Link
+            to={ROUTES.LOGIN}
+            style={{
+              textDecoration: "none",
+              color: "black",
+            }}
+          >
+            <Icon id="account-icon">
+              <AccountCircleOutlinedIcon />
+            </Icon>
+          </Link>
+        </Wrap>
+      </Container>
+    </>
   );
 }
 
+const Container = styled.div`
+  form {
+    margin: 0;
+    &:active {
+      border: none;
+    }
+  }
+  input {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    outline: none;
+  }
+`;
 const Wrap = styled.div`
   text-align: center;
   img {

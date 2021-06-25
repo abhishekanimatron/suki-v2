@@ -5,49 +5,78 @@ export default function BasicWall() {
   return (
     <Container>
       <img src="/images/fINALHERO2_2048x.jpg" alt="" />
-      <HeroContentWrap>
-        <HeroContent>
-          <h3>Back to Basics</h3>
-        </HeroContent>
-      </HeroContentWrap>
+      <ButtonWrap>
+        <h3>Back to Basics</h3>
+        <ShopButton>Shop Now</ShopButton>
+      </ButtonWrap>
     </Container>
   );
 }
 
 const Container = styled.div`
+  position: relative;
   img {
-    z-index: -100;
-    max-width: 100%;
-    margin: 0;
-    border: 0;
-    display: block;
-    height: 100vh;
+    display: flex;
+    top: 0;
+    right: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     overflow: hidden;
-    background-position: center;
-    height: auto;
+    @media (max-width: 768px) {
+      width: 200vw;
+      object-fit: cover;
+      object-position: center;
+      transform: translateX(-25%);
+    }
   }
 `;
 
-const HeroContentWrap = styled.div`
-  display: flex;
-  /* position: absolute; */
-  align-items: flex-start;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  top: 0;
+const ButtonWrap = styled.div`
+  position: absolute;
+  top: 10rem;
   right: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-`;
-
-const HeroContent = styled.div`
+  left: 0;
+  text-align: center;
+  padding: 1rem 4rem;
   h3 {
     margin: 2rem;
-    color: black;
+    position: relative;
+    color: #fff;
     font-size: 1.5rem;
     height: 2rem;
     font-weight: lighter;
+  }
+  @media (max-width: 940px) {
+    margin-top: -4rem;
+    top: 6rem;
+  }
+  @media (max-width: 768px) {
+    margin-top: -4rem;
+    top: 6rem;
+  }
+`;
+
+const ShopButton = styled.button`
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1.5;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 0.7rem 2rem;
+  transition: 0.7s all cubic-bezier(0.23, 1, 0.32, 1);
+  @media (max-width: 768px) {
+    margin-top: -40rem;
+  }
+  &:hover {
+    background-color: #fff;
+    color: #000;
   }
 `;

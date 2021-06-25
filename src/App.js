@@ -19,7 +19,6 @@ const AllProducts = lazy(() => import("./pages/collections/AllProducts"));
 const Blackmoon = lazy(() => import("./pages/collections/Blackmoon"));
 const SukiSpace = lazy(() => import("./pages/collections/SukiSpace"));
 const AnimalCrossing = lazy(() => import("./pages/AnimalCrossing"));
-const Payment = lazy(() => import("./pages/payment"));
 const NotFound = lazy(() => import("./pages/notFound"));
 
 function App() {
@@ -39,7 +38,6 @@ function App() {
             <Route path={ROUTES.ANIMAL_CROSSING} component={AnimalCrossing} />
             <Route path={ROUTES.CART} component={Cart} />
             <Route path={ROUTES.HOME} component={Home} exact />
-            <Route path={ROUTES.PAYMENT} component={Payment} exact />
             <Route component={NotFound} />
           </Switch>
         </Suspense>

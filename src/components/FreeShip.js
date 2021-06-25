@@ -20,6 +20,7 @@ const Container = styled.div`
 
   p {
     padding: 0.3rem 0;
+    margin: 0;
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 2px;
