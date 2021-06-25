@@ -284,8 +284,11 @@ const Hero = styled.div`
         color: #f4b1a1;
       }
       h5 {
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: normal;
+        &:hover {
+          color: "pink";
+        }
       }
       .product-property {
         color: #bbb;

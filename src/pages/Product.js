@@ -12,7 +12,7 @@ import FooterLinks from "../components/footer/FooterLinks";
 import styled from "styled-components/macro";
 
 import { useDispatch } from "react-redux";
-import { addToBasket } from "../slices/basketSlice";
+import { addToBasket, removeFromBasket } from "../slices/basketSlice";
 
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -24,7 +24,7 @@ import CheckoutPopup from "../components/cart/popup/CheckoutPopup";
 import PopupContent from "../components/cart/popup/PopupContent";
 
 export default function Product() {
-  let productId = window.location.href.substr(35).toString();
+  let productId = window.location.href.substr(30).toString();
   let productObject = homePageProductList[productId - 1];
   let relatedItemsSlice = homePageProductList.slice(0, 30);
   let relatedItems = relatedItemsSlice.sort(() => 0.5 - Math.random());
@@ -39,6 +39,9 @@ export default function Product() {
   const [trigger, setTrigger] = useState(false);
 
   const addItemToBasket = () => {
+    if (counter < 5) {
+      incrementQuantity();
+    }
     setTrigger(true);
     setTimeout(() => {
       setTrigger(false);
@@ -50,6 +53,27 @@ export default function Product() {
       price,
     };
     dispatch(addToBasket(product));
+  };
+
+  const removeItemFromBasket = () => {
+    if (counter > 0) {
+      decrementQuantity();
+      dispatch(removeFromBasket({ id }));
+    }
+  };
+
+  const [counter, setCounter] = useState(1);
+
+  // Function is called everytime increment button is clicked
+  const incrementQuantity = () => {
+    // Counter state is incremented
+    setCounter(counter + 1);
+  };
+
+  // Function is called everytime decrement button is clicked
+  const decrementQuantity = () => {
+    // Counter state is decremented
+    setCounter(counter - 1);
   };
 
   const mountedRef = useRef(true);
@@ -93,16 +117,11 @@ export default function Product() {
             <option>2XL</option>
           </select>
           <div id="quantity-selector">
-            <span id="quantity-minus">
+            <span onClick={removeItemFromBasket} id="quantity-minus">
               <RemoveIcon />
             </span>
-            <input
-              aria-label="quantity"
-              type="text"
-              defaultValue="1"
-              pattern="[0-9]*"
-            />
-            <span id="quantity-plus">
+            <div id="quantity-item">{counter}</div>
+            <span onClick={addItemToBasket} id="quantity-plus">
               <AddIcon />
             </span>
           </div>
@@ -231,6 +250,7 @@ const ShopContent = styled.div`
     height: 2.5rem;
   }
   #quantity-selector {
+    border: 1px solid black;
     width: 20%;
     margin-top: 1rem;
     position: relative;
@@ -252,6 +272,12 @@ const ShopContent = styled.div`
       right: 0;
       justify-content: flex-end;
       padding-right: 10px;
+    }
+    #quantity-item {
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+      text-align: center;
+      width: 100%;
     }
     input {
       padding-top: 0.3rem;
