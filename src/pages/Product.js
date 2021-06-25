@@ -24,7 +24,7 @@ import CheckoutPopup from "../components/cart/popup/CheckoutPopup";
 import PopupContent from "../components/cart/popup/PopupContent";
 
 export default function Product() {
-  let productId = window.location.href.substr(30).toString();
+  let productId = window.location.href.substr(35).toString();
   let productObject = homePageProductList[productId - 1];
   let relatedItemsSlice = homePageProductList.slice(0, 30);
   let relatedItems = relatedItemsSlice.sort(() => 0.5 - Math.random());
