@@ -1,19 +1,10 @@
 import styled from "styled-components/macro";
 import * as ROUTES from "../constants/routes";
-import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 export default function Navbar() {
-  const [showMenu, setShowMenu] = useState(false);
-  const handleMenu = () => {
-    setShowMenu(!showMenu);
-  };
   return (
     <Container>
-      <div className="menu-btn" onClick={handleMenu}>
-        <MenuIcon />
-      </div>
       <Nav className="main-nav">
         <ul className="main-menu">
           <li>
@@ -63,58 +54,6 @@ export default function Navbar() {
           </li>
         </ul>
       </Nav>
-
-      {showMenu && (
-        <Nav>
-          <ul className="right-menu">
-            <li>
-              <Link
-                className="nav-btn"
-                to={ROUTES.RESPONSIBILITY}
-                style={{ textDecoration: "none" }}
-              >
-                REPONSIBILITY
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="nav-btn"
-                to={ROUTES.ALL_PRODUCTS}
-                style={{ textDecoration: "none" }}
-              >
-                BASICS
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="nav-btn"
-                to={ROUTES.BLACK_MOON}
-                style={{ textDecoration: "none" }}
-              >
-                BLACK MOON
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="nav-btn"
-                to={ROUTES.SPACE}
-                style={{ textDecoration: "none" }}
-              >
-                SPACE 2029
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={ROUTES.ANIMAL_CROSSING}
-                style={{ textDecoration: "none" }}
-                className="nav-btn"
-              >
-                Animal Crossing Closet
-              </Link>
-            </li>
-          </ul>
-        </Nav>
-      )}
     </Container>
   );
 }

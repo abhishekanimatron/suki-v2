@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { homePageProductList } from "../data/data";
 import Fuse from "fuse.js";
+import ClearIcon from "@material-ui/icons/Clear";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -46,27 +47,28 @@ export default function Search() {
         />
       </form>
       {unique.length > 1 ? (
-        <CardContainer>
-          <p style={{ textAlign: "center", color: "pink" }}>
-            {searchTerm.length > 3 &&
-              `Your search for ${searchTerm} has revealed the following.`}
-          </p>
-          {unique?.map((item) => (
-            <Link
-              to={`/product/${item.id}`}
-              key={item.id}
-              style={{ textDecoration: "none" }}
-            >
-              <Card>
-                <img src={item.productImage} alt={item.productTitle} />
-                <p className="item-info">{item.title}</p>
-                <p className="price-info">
-                  {item.price === 0 ? "Sold Out" : `$ ${item.price} USD`}
-                </p>
-              </Card>
-            </Link>
-          ))}
-        </CardContainer>
+        <Container>
+          <CardContainer>
+            {unique?.map((item) => (
+              <Link
+                to={`/product/${item.id}`}
+                key={item.id}
+                style={{ textDecoration: "none" }}
+              >
+                <Card>
+                  <img src={item.productImage} alt={item.productTitle} />
+                  <p className="item-info">{item.title}</p>
+                  <p className="price-info">
+                    {item.price === 0 ? "Sold Out" : `$ ${item.price} USD`}
+                  </p>
+                </Card>
+              </Link>
+            ))}
+          </CardContainer>
+          <Button onClick={() => setSearchTerm("")}>
+            <ClearIcon />
+          </Button>
+        </Container>
       ) : (
         <p style={{ textAlign: "center", color: "pink" }}>
           {searchTerm.length > 3 && "No items like that in our store."}
@@ -108,4 +110,17 @@ const Card = styled.div`
     color: #666;
     font-size: 0.8rem;
   }
+`;
+
+const Container = styled.div`
+  position: relative;
+`;
+const Button = styled.div`
+  position: absolute;
+  top: -3.2rem;
+  right: 2rem;
+  color: "#fff";
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
 `;

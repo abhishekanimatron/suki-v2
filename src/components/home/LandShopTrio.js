@@ -1,4 +1,3 @@
-import "../../styles/landshop.css";
 import styled from "styled-components";
 import { homePageProductList } from "../../data/data";
 import { Link } from "react-router-dom";
@@ -57,5 +56,20 @@ const ShopContent = styled.div`
     width: 40%;
     border: 1px solid #000;
     cursor: pointer;
+  }
+  .item-name {
+    padding: 1px;
+    margin: 0.5rem 0 0 0;
+    background-color: white;
+  }
+  .item-price {
+    background-color: white;
+    padding: 1px;
+    font-weight: lighter;
+    font-size: small;
+  }
+  .shop-text {
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 `;

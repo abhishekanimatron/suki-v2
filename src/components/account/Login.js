@@ -101,6 +101,9 @@ const Container = styled.div`
 const HeroContent = styled.div`
   display: flex;
   width: 35%;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
   flex-direction: column;
   margin: auto;
   margin-bottom: 5rem;

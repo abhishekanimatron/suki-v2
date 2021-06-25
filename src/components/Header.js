@@ -1,7 +1,7 @@
 import * as ROUTES from "../constants/routes";
 import { Link } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
 import styled from "styled-components/macro";
-import "../styles/icons.css";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
@@ -16,14 +16,20 @@ export default function Header() {
     setSearch(!search);
   };
   const items = useSelector(selectItems);
+
+  const [showMenu, setShowMenu] = useState(false);
+  const handleMenu = () => {
+    setShowMenu(!showMenu);
+  };
   return (
-    <>
+    <BigContainer>
+      {search && <Search />}
       <Container>
-        {search && <Search />}
+        <div></div>
+        <Link to={ROUTES.HOME}>
+          <img id="suki-logo" src="/images/TSUKI_360x.png" alt="TSUKI" />
+        </Link>
         <Wrap>
-          <Link to={ROUTES.HOME}>
-            <img id="suki-logo" src="/images/TSUKI_360x.png" alt="TSUKI" />
-          </Link>
           <Link
             to={ROUTES.CART}
             style={{
@@ -31,10 +37,10 @@ export default function Header() {
               color: "black",
             }}
           >
-            <div id="cart-icon">
+            <span id="cart-icon">
               <ShoppingCartRoundedIcon />
               {items.length !== 0 && <span> {items.length}</span>}
-            </div>
+            </span>
           </Link>
           <Icon onClick={handleSearch} id="search-icon">
             <SearchRoundedIcon />
@@ -50,13 +56,70 @@ export default function Header() {
               <AccountCircleOutlinedIcon />
             </Icon>
           </Link>
+          <Icon onClick={handleMenu} id="menu-btn">
+            <MenuIcon />
+          </Icon>
+          {/* <span className="menu-btn" onClick={handleMenu}>
+            <MenuIcon />
+          </span> */}
         </Wrap>
-      </Container>
-    </>
+      </Container>{" "}
+      {showMenu && (
+        <Nav>
+          <ul className="right-menu">
+            <li>
+              <Link
+                className="nav-btn"
+                to={ROUTES.RESPONSIBILITY}
+                style={{ textDecoration: "none" }}
+              >
+                REPONSIBILITY
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="nav-btn"
+                to={ROUTES.ALL_PRODUCTS}
+                style={{ textDecoration: "none" }}
+              >
+                BASICS
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="nav-btn"
+                to={ROUTES.BLACK_MOON}
+                style={{ textDecoration: "none" }}
+              >
+                BLACK MOON
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="nav-btn"
+                to={ROUTES.SPACE}
+                style={{ textDecoration: "none" }}
+              >
+                SPACE 2029
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={ROUTES.ANIMAL_CROSSING}
+                style={{ textDecoration: "none" }}
+                className="nav-btn"
+              >
+                Animal Crossing Closet
+              </Link>
+            </li>
+          </ul>
+        </Nav>
+      )}
+    </BigContainer>
   );
 }
 
-const Container = styled.div`
+const BigContainer = styled.div`
   form {
     margin: 0;
     &:active {
@@ -69,13 +132,64 @@ const Container = styled.div`
     outline: none;
   }
 `;
-const Wrap = styled.div`
-  text-align: center;
+
+const Nav = styled.div`
+  width: 100vw;
+  .right-menu {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 0;
+    li {
+      background-color: #f4e0ea;
+      padding: 0.8rem 1rem;
+    }
+  }
+  .main-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+    margin: 0;
+    li {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+  }
+  .nav-btn {
+    color: #222;
+    &:hover {
+      color: #f4e0ea;
+    }
+  }
+`;
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
   img {
+    justify-self: center;
     margin-left: 4rem;
     cursor: pointer;
     height: 7.5rem;
   }
+  #menu-btn {
+    height: 100%;
+    display: none;
+    @media (max-width: 768px) {
+      display: block;
+      cursor: pointer;
+      &:hover {
+        color: #f4e0ea;
+      }
+    }
+  }
+`;
+const Wrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+
   #cart-icon {
     position: relative;
     float: right;
