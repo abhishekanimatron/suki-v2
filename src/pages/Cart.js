@@ -111,12 +111,13 @@ export default function Cart() {
                   <Link to={ROUTES.HOME} style={{ textDecoration: "none" }}>
                     <p id="continue-shopping-btn">Continue Shopping</p>
                   </Link>
+                  <div id="test-warning">
+                    *Please use the following test credit card for payments*
+                    <br />
+                    4242 4242 4242 4242 -Exp: 04/24 - CVV:123
+                  </div>
                 </div>
-                <div id="test-warning">
-                  *Please use the following test credit card for payments*
-                  <br />
-                  4242 4242 4242 4242 -Exp: 01/23 - CVV:123
-                </div>
+
                 <div id="hero-right">
                   <h4>
                     Subtotal: <span>$ {total} USD</span>
@@ -205,6 +206,9 @@ const EmptyContainer = styled.div`
   }
 `;
 const Hero = styled.div`
+  #test-warning {
+    color: #f4b1a1;
+  }
   h2 {
     margin: 2rem 0;
     margin-left: 1rem;
@@ -262,6 +266,9 @@ const Hero = styled.div`
         cursor: pointer;
         &:hover {
           padding-bottom: 0;
+        }
+        @media (max-width: 768px) {
+          width: 40%;
         }
       }
     }

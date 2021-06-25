@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 export default function BasicWall() {
   return (
@@ -7,7 +9,9 @@ export default function BasicWall() {
       <img src="/images/fINALHERO2_2048x.jpg" alt="" />
       <ButtonWrap>
         <h3>Back to Basics</h3>
-        <ShopButton>Shop Now</ShopButton>
+        <Link to={ROUTES.ALL_PRODUCTS} style={{ textDecoration: "none" }}>
+          <ShopButton>Shop Now</ShopButton>
+        </Link>
       </ButtonWrap>
     </Container>
   );
@@ -27,6 +31,7 @@ const Container = styled.div`
     @media (max-width: 768px) {
       width: 200vw;
       object-fit: cover;
+      overflow: hidden;
       object-position: center;
       transform: translateX(-25%);
     }
