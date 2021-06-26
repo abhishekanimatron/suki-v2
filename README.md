@@ -1,6 +1,12 @@
 # Suki - Suki Market
 
-A tsuki market clone (Clothing Brand).
+A tsuki market clone (Clothing Brand) by Marzia & Pewdiepie.
+
+Deployed app:
+https://suki-196e4.web.app/
+
+Demo Video:
+https://youtu.be/Tt3xiPwXXD8
 
 Visit the original site here:
 https://tsuki.market
