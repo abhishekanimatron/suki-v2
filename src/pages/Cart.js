@@ -207,7 +207,7 @@ const EmptyContainer = styled.div`
 `;
 const Hero = styled.div`
   #test-warning {
-    color: #f4b1a1;
+    color: #666;
   }
   h2 {
     margin: 2rem 0;

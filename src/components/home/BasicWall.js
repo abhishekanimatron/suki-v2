@@ -24,16 +24,16 @@ const Container = styled.div`
     top: 0;
     right: 0;
     z-index: 200;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
     overflow: hidden;
     @media (max-width: 768px) {
-      width: 200vw;
-      object-fit: cover;
+      /* width: ; */
+      /* object-fit: contain; */
       overflow: hidden;
       object-position: center;
-      transform: translateX(-25%);
+      /* transform: translateX(-25%); */
     }
   }
 `;

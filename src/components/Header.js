@@ -25,7 +25,9 @@ export default function Header() {
     <BigContainer>
       {search && <Search />}
       <Container>
-        <div></div>
+        <Icon onClick={handleMenu} id="menu-btn">
+          <MenuIcon />
+        </Icon>
         <Link to={ROUTES.HOME}>
           <img id="suki-logo" src="/images/TSUKI_360x.png" alt="TSUKI" />
         </Link>
@@ -56,9 +58,6 @@ export default function Header() {
               <AccountCircleOutlinedIcon />
             </Icon>
           </Link>
-          <Icon onClick={handleMenu} id="menu-btn">
-            <MenuIcon />
-          </Icon>
           {/* <span className="menu-btn" onClick={handleMenu}>
             <MenuIcon />
           </span> */}
@@ -168,10 +167,14 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   img {
+    margin-top: 2.2rem;
     justify-self: center;
     margin-left: 4rem;
     cursor: pointer;
     height: 7.5rem;
+    @media (max-width: 768px) {
+      height: 4rem;
+    }
   }
   #menu-btn {
     height: 100%;

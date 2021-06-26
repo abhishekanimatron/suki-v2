@@ -12,7 +12,7 @@ import FooterLinks from "../components/footer/FooterLinks";
 import styled from "styled-components/macro";
 
 import { useDispatch } from "react-redux";
-import { addToBasket, removeFromBasket } from "../slices/basketSlice";
+import { addToBasket } from "../slices/basketSlice";
 
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -39,26 +39,21 @@ export default function Product() {
   const [trigger, setTrigger] = useState(false);
 
   const addItemToBasket = () => {
-    if (counter < 5) {
-      incrementQuantity();
-    }
-    setTrigger(true);
-    setTimeout(() => {
-      setTrigger(false);
-    }, 2000);
-    const product = {
-      id,
-      title,
-      productImage,
-      price,
-    };
-    dispatch(addToBasket(product));
-  };
-
-  const removeItemFromBasket = () => {
-    if (counter > 0) {
-      decrementQuantity();
-      dispatch(removeFromBasket({ id }));
+    for (let i = 0; i < counter; i++) {
+      // if (counter < 5) {
+      //   incrementQuantity();
+      // }
+      setTrigger(true);
+      setTimeout(() => {
+        setTrigger(false);
+      }, 2000);
+      const product = {
+        id,
+        title,
+        productImage,
+        price,
+      };
+      dispatch(addToBasket(product));
     }
   };
 
@@ -66,14 +61,18 @@ export default function Product() {
 
   // Function is called everytime increment button is clicked
   const incrementQuantity = () => {
-    // Counter state is incremented
-    setCounter(counter + 1);
+    if (counter < 5) {
+      // Counter state is incremented
+      setCounter(counter + 1);
+    }
   };
 
   // Function is called everytime decrement button is clicked
   const decrementQuantity = () => {
-    // Counter state is decremented
-    setCounter(counter - 1);
+    if (counter > 1) {
+      // Counter state is decremented
+      setCounter(counter - 1);
+    }
   };
 
   const mountedRef = useRef(true);
@@ -117,11 +116,11 @@ export default function Product() {
             <option>2XL</option>
           </select>
           <div id="quantity-selector">
-            <span onClick={removeItemFromBasket} id="quantity-minus">
+            <span onClick={decrementQuantity} id="quantity-minus">
               <RemoveIcon />
             </span>
             <div id="quantity-item">{counter}</div>
-            <span onClick={addItemToBasket} id="quantity-plus">
+            <span onClick={incrementQuantity} id="quantity-plus">
               <AddIcon />
             </span>
           </div>

@@ -19,7 +19,9 @@ function CheckoutProduct({ id, productImage, price, title }) {
   };
 
   const removeItemFromBasket = () => {
-    decrementQuantity();
+    if (counter > 1) {
+      decrementQuantity();
+    }
     dispatch(removeFromBasket({ id }));
   };
 
