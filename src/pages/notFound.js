@@ -1,14 +1,14 @@
 import { useEffect } from "react";
+import styled from "styled-components/macro";
 
-import FreeShip from "../components/FreeShip";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 
+import FreeShip from "../components/FreeShip";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import FollowFooter from "../components/footer/FollowFooter";
 import FooterLinks from "../components/footer/FooterLinks";
-import styled from "styled-components";
 
 export default function NotFound() {
   useEffect(() => {

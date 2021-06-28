@@ -1,27 +1,36 @@
-import { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import FirebaseContext from "../../context/firebase";
 import * as ROUTES from "../../constants/routes";
+import { useHistory } from "react-router-dom";
+
+import { useContext, useEffect, useState } from "react";
+import styled from "styled-components/macro";
+
+import FirebaseContext from "../../context/firebase";
 
 export default function Login() {
+  //update title
   useEffect(() => {
     document.title = "Login - Suki Market";
   }, []);
   const history = useHistory();
+  // values for validation
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  // firebase context
   const { firebase } = useContext(FirebaseContext);
 
+  // invalid if empty
   const isInvalid = password === "" || emailAddress === "";
 
   const [error, setError] = useState("");
 
+  // function for login
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
+      // from firebase
       await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
+      // on successful login route to homepage
       history.push(ROUTES.HOME);
     } catch (error) {
       setEmailAddress("");

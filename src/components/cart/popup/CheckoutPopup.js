@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-
+// popup container, triggered from product page
 function CheckoutPopup(props) {
   return props.trigger ? (
     <Popup>

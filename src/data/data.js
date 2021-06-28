@@ -1,3 +1,6 @@
+// our data file, a list of similar objects
+// each one has atmost an id, image, title and price and a model image probably
+// price of zero represents, it is sold out
 export const homePageProductList = [
   {
     // home page data

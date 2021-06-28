@@ -1,17 +1,20 @@
+import { homePageProductList } from "../../data/data";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
+
 import FreeShip from "../../components/FreeShip";
 import Header from "../../components/Header";
-import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
-import { homePageProductList } from "../../data/data";
 import FollowFooter from "../../components/footer/FollowFooter";
 import FooterLinks from "../../components/footer/FooterLinks";
-import styled from "styled-components";
 
 export default function AllProducts() {
+  //title update
   useEffect(() => {
     document.title = "All Products - Suki";
   }, []);
+  // getting data for index 3-12 on the list
   let allProductsList = homePageProductList.slice(3, 12);
   return (
     <>
@@ -19,6 +22,7 @@ export default function AllProducts() {
       <Header />
       <Navbar />
       <Container>
+        {/* map over the list generating a Wrap component for each */}
         {allProductsList.map((product) => (
           <Wrap key={product.id}>
             <Link to={`/product/${product.id}`}>

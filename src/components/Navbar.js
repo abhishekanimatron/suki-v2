@@ -1,7 +1,8 @@
-import styled from "styled-components/macro";
 import * as ROUTES from "../constants/routes";
 import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
 
+// horizontal navbar for widescreens; larger displays
 export default function Navbar() {
   return (
     <Container>

@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../../../constants/routes";
-import { IOSSwitch } from "../switchIos";
 
+import { IOSSwitch } from "../switchIos";
+import styled from "styled-components/macro";
+
+// card popup
 function PopupContent({ title, productImage, price }) {
   return (
     <Container>

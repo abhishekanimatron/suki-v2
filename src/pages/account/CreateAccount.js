@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import FollowFooter from "../../components/footer/FollowFooter";
 import FooterLinks from "../../components/footer/FooterLinks";
 import Signup from "../../components/account/Signup";
+// Register page
 export default function Account() {
   return (
     <div>

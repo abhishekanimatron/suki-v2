@@ -1,6 +1,7 @@
 import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 
+// toggle switch for shipping option
 export const IOSSwitch = withStyles((theme) => ({
   root: {
     width: 32,

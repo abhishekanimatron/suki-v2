@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 
+// our banner image
 export default function BasicWall() {
   return (
     <Container>

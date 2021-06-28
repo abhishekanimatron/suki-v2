@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
+
 import FreeShip from "../components/FreeShip";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
@@ -7,6 +8,7 @@ import FollowFooter from "../components/footer/FollowFooter";
 import FooterLinks from "../components/footer/FooterLinks";
 
 export default function Responsibility() {
+  // title update
   useEffect(() => {
     document.title = "Responsibility - Suki";
   }, []);

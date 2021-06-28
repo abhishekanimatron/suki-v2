@@ -1,17 +1,20 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { homePageProductList } from "../../data/data";
+import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
+
 import FreeShip from "../../components/FreeShip";
 import Header from "../../components/Header";
 import Navbar from "../../components/Navbar";
 import FollowFooter from "../../components/footer/FollowFooter";
 import FooterLinks from "../../components/footer/FooterLinks";
-import styled from "styled-components";
 
 export default function SukiSpace() {
+  //title update
   useEffect(() => {
     document.title = "SPACE 2029 - Suki";
   }, []);
+  // getting data for index 21-30 on the list
   let spaceProductsList = homePageProductList.slice(21, 30);
   return (
     <>
@@ -19,6 +22,7 @@ export default function SukiSpace() {
       <Header />
       <Navbar />
       <Container>
+        {/* map over the list generating a Wrap component for each */}
         {spaceProductsList.map((product) => (
           <Wrap key={product.id}>
             <Link to={`/product/${product.id}`}>
@@ -26,6 +30,7 @@ export default function SukiSpace() {
             </Link>
             <h5>{product.sale !== 0 ? "SALE" : "RARE"}</h5>
             <p>{product.title}</p>
+            {/* change price based on availability */}
             <h6>
               {product.price
                 ? `Previously, $ ${product.discountPrice} Now $${product.price} USD `

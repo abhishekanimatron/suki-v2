@@ -1,5 +1,5 @@
 import Loader from "react-loader-spinner";
-
+// loading component
 function Loading() {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

@@ -1,11 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import SportsHandballIcon from "@material-ui/icons/SportsHandball";
-import LoyaltyIcon from "@material-ui/icons/Loyalty";
-import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import FollowFooter from "./FollowFooter";
 import FooterLinks from "./FooterLinks";
 
+import styled from "styled-components/macro";
+
+import SportsHandballIcon from "@material-ui/icons/SportsHandball";
+import LoyaltyIcon from "@material-ui/icons/Loyalty";
+import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
+
+// footer with our features and rest footer componenets
 export default function Footer() {
   return (
     <Container>

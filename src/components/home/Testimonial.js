@@ -2,6 +2,7 @@ import React from "react";
 import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
 import styled from "styled-components/macro";
 
+// some words from our founders
 export default function Testimonial() {
   return (
     <div>

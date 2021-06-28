@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// some topics on footer
 export default function FooterLinks() {
   return (
     <FooterLinksContainer>

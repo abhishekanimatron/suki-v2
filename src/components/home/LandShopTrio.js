@@ -1,8 +1,10 @@
-import styled from "styled-components";
 import { homePageProductList } from "../../data/data";
 import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
 
+// some items from shop; featured
 export default function LandShopTrio() {
+  // slice only first 2 items from list
   let landingShopProductsList = homePageProductList.slice(0, 2);
   return (
     <Container>

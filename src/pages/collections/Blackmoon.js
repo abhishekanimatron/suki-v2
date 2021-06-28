@@ -1,17 +1,20 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { homePageProductList } from "../../data/data";
+import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
+
 import FreeShip from "../../components/FreeShip";
 import Header from "../../components/Header";
 import Navbar from "../../components/Navbar";
 import FollowFooter from "../../components/footer/FollowFooter";
 import FooterLinks from "../../components/footer/FooterLinks";
-import styled from "styled-components";
 
 export default function Blackmoon() {
+  //title update
   useEffect(() => {
     document.title = "Black Moon - Suki";
   }, []);
+  // getting data for index 12-20 on the list
   let blackMoonProductsList = homePageProductList.slice(12, 20);
   return (
     <>
@@ -19,6 +22,7 @@ export default function Blackmoon() {
       <Header />
       <Navbar />
       <Container>
+        {/* map over the list generating a Wrap component for each */}
         {blackMoonProductsList.map((product) => (
           <Wrap key={product.id}>
             <Link to={`/product/${product.id}`}>

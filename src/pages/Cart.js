@@ -1,50 +1,64 @@
+import { useSelector } from "react-redux";
+import { selectItems, selectTotal } from "../slices/basketSlice";
+
 import styled from "styled-components/macro";
 import { useEffect, useContext, useState, useRef } from "react";
 import FirebaseContext from "../context/firebase";
 import axios from "axios";
 
+import { IOSSwitch } from "../components/cart/switchIos";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+
+import * as ROUTES from "../constants/routes";
+import { Link } from "react-router-dom";
+
+import StripeCheckoutButton from "../components/stripe-button/stripe-button";
+import CheckoutProduct from "../components/cart/CheckoutProduct";
 import FreeShip from "../components/FreeShip";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import FollowFooter from "../components/footer/FollowFooter";
 import FooterLinks from "../components/footer/FooterLinks";
 
-import { IOSSwitch } from "../components/cart/switchIos";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-
-import { useSelector } from "react-redux";
-import { selectItems, selectTotal } from "../slices/basketSlice";
-import * as ROUTES from "../constants/routes";
-import { Link } from "react-router-dom";
-import CheckoutProduct from "../components/cart/CheckoutProduct";
-import StripeCheckoutButton from "../components/stripe-button/stripe-button";
-
 export default function Cart() {
+  // fetch items and total price from our
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
+  // value for user there or not
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  // firebase context
   const { firebase } = useContext(FirebaseContext);
 
   const mountedRef = useRef(true);
   useEffect(() => {
+    // title update
     document.title = "Cart - Suki";
     return () => {
       mountedRef.current = false;
     };
   }, []);
+  // on state change, check if user is there
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      // console.log("logged in");
       setIsUserLoggedIn(true);
     } else {
-      // setIsUserLoggedIn(false);
-      console.log("not logged in");
+      console.log("Not logged in");
     }
   });
 
+  // to fetch unique values in items, so as to not show same product twice
+  //  Initialize an empty map.
   let mymap = new Map();
+  // Iterate through array using filter method.
   let unique = items.filter((el) => {
+    // Check if there is any entry in map with same name as of current object.
     const val = mymap.get(el.title);
+    // process
+    //     —-If true: i.e. there exists an entry with same name then, check if its id is less than current object’s id.
+    // ——–If true: i.e current object’s id is less than the id of the object returned by map
+    //              then delete the map entry and enter the current object and return true.
+    // ——–if false: i.e. id of current object is greater than the id of object returned by map then return false.
+    // —-If false: i.e. there is no entry in map with same name then enter the current object into map.
     if (val) {
       if (el.id < val) {
         mymap.delete(el.title);
@@ -58,23 +72,13 @@ export default function Cart() {
     return true;
   });
 
-  const baseUrl = "http://localhost:3000";
-  const buyNow = (priceTotal) => {
-    try {
-      const res = axios.post(`${baseUrl}/order/${priceTotal}`);
-      console.log(res);
-    } catch (error) {
-      console.log("error occured");
-      console.log("error", error.message);
-    }
-  };
-
   return (
     <>
       <div>
         <FreeShip /> <Header />
         <Navbar />
         <Container>
+          {/* if no items show empty container */}
           {items.length === 0 ? (
             <EmptyContainer>
               <h2>Shopping Cart</h2> <p>Your cart is currently empty.</p>
@@ -97,6 +101,7 @@ export default function Cart() {
                       </tr>
                     </thead>
                     <tbody>
+                      {/* map over values, and show each product on cart */}
                       {unique.map((item, i) => (
                         <CheckoutProduct
                           key={i}
@@ -138,7 +143,6 @@ export default function Cart() {
                   </div>
                   <Link to={ROUTES.CART}>
                     <button
-                      onClick={() => buyNow(total)}
                       role="link"
                       className={`${!isUserLoggedIn && "grey-btn"}`}
                     >

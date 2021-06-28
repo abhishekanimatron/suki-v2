@@ -1,20 +1,28 @@
+import Fuse from "fuse.js";
+
 import { useState, useEffect } from "react";
 import { homePageProductList } from "../data/data";
-import Fuse from "fuse.js";
-import ClearIcon from "@material-ui/icons/Clear";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components/macro";
+
+import ClearIcon from "@material-ui/icons/Clear";
 
 export default function Search() {
+  // value for given search term
   const [searchTerm, setSearchTerm] = useState("");
+  // objects list which has the resultant objects from the search performed
   const [objects, setObjects] = useState([]);
 
   useEffect(() => {
+    // options with a key of 'title' based on which our search is done
     const options = {
       keys: ["title"],
     };
+    // a fuse based on the list and above option
     const fuse = new Fuse(homePageProductList, options);
+    // results which is returned from fuse search
     const results = fuse.search(searchTerm).map(({ item }) => item);
+    // if search term has >2 length and we do get some results on basis of it, set objects array to results
     if (searchTerm.length > 2 && results.length > 0) {
       setObjects(results);
     } else {
@@ -22,9 +30,19 @@ export default function Search() {
     }
   }, [searchTerm]);
 
+  // to pull out only unique values from objects array
+  //  Initialize an empty map.
   let mymap = new Map();
+  // Iterate through array using filter method.
   let unique = objects.filter((el) => {
+    // Check if there is any entry in map with same name as of current object.
     const val = mymap.get(el.title);
+    // process
+    //     —-If true: i.e. there exists an entry with same name then, check if its id is less than current object’s id.
+    // ——–If true: i.e current object’s id is less than the id of the object returned by map
+    //              then delete the map entry and enter the current object and return true.
+    // ——–if false: i.e. id of current object is greater than the id of object returned by map then return false.
+    // —-If false: i.e. there is no entry in map with same name then enter the current object into map.
     if (val) {
       if (el.id < val) {
         mymap.delete(el.title);
@@ -46,9 +64,11 @@ export default function Search() {
           onChange={({ target }) => setSearchTerm(target.value)}
         />
       </form>
+      {/* if there are search results show this container */}
       {unique.length > 1 ? (
         <Container>
           <CardContainer>
+            {/* map over items in unique list and show a card for each */}
             {unique?.map((item) => (
               <Link
                 to={`/product/${item.id}`}
@@ -70,6 +90,7 @@ export default function Search() {
           </Button>
         </Container>
       ) : (
+        // if no items in the list then show this statement
         <p style={{ textAlign: "center", color: "pink" }}>
           {searchTerm.length > 3 && "No items like that in our store."}
         </p>

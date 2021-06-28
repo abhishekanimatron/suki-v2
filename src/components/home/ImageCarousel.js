@@ -1,9 +1,10 @@
-import * as ROUTES from "../../constants/routes";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "styled-components";
+import styled from "styled-components/macro";
+
+import * as ROUTES from "../../constants/routes";
+import { Link } from "react-router-dom";
 
 export default function ImageCarousel() {
   var settings = {

@@ -10,6 +10,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 function CheckoutProduct({ id, productImage, price, title }) {
   const dispatch = useDispatch();
 
+  // if counter if less than 5, (max. quantity) add it to basket and increment counter
   const addItemToBasket = () => {
     if (counter < 5) {
       incrementQuantity();
@@ -18,6 +19,7 @@ function CheckoutProduct({ id, productImage, price, title }) {
     }
   };
 
+  // if counter if greater than 1, remove it from basket and decrement counter
   const removeItemFromBasket = () => {
     if (counter > 1) {
       decrementQuantity();

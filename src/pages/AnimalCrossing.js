@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { homePageProductList } from "../data/data";
+
 import FreeShip from "../components/FreeShip";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import FollowFooter from "../components/footer/FollowFooter";
 import FooterLinks from "../components/footer/FooterLinks";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 function AnimalCrossing() {
+  //title update
   useEffect(() => {
     document.title = "Animal Crossing Closet - Suki";
   }, []);
 
+  // getting data from 30 index on the list
   let animalCrossingProductsList = homePageProductList.slice(30);
   return (
     <>
@@ -24,6 +27,7 @@ function AnimalCrossing() {
         Animal Crossing Closet
       </h2>
       <Container>
+        {/* map over the list generating a Wrap component for each */}
         {animalCrossingProductsList.map((product) => (
           <Wrap key={product.id}>
             <img

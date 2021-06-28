@@ -1,8 +1,15 @@
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../slices/basketSlice";
+
 import { Helmet } from "react-helmet";
 import { useEffect, useRef, useState } from "react";
+
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import { homePageProductList } from "../data/data";
+
+import CheckoutPopup from "../components/cart/popup/CheckoutPopup";
+import PopupContent from "../components/cart/popup/PopupContent";
 
 import FreeShip from "../components/FreeShip";
 import Header from "../components/Header";
@@ -11,20 +18,16 @@ import FollowFooter from "../components/footer/FollowFooter";
 import FooterLinks from "../components/footer/FooterLinks";
 import styled from "styled-components/macro";
 
-import { useDispatch } from "react-redux";
-import { addToBasket } from "../slices/basketSlice";
-
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import PinterestIcon from "@material-ui/icons/Pinterest";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import FacebookIcon from "@material-ui/icons/Facebook";
 
-import CheckoutPopup from "../components/cart/popup/CheckoutPopup";
-import PopupContent from "../components/cart/popup/PopupContent";
-
 export default function Product() {
+  // product id fetched from url
   let productId = window.location.href.substr(35).toString();
+  // object data from list
   let productObject = homePageProductList[productId - 1];
   let relatedItemsSlice = homePageProductList.slice(0, 30);
   let relatedItems = relatedItemsSlice.sort(() => 0.5 - Math.random());
@@ -34,19 +37,21 @@ export default function Product() {
   let productImage = productObject.productImage;
   let price = productObject.price;
   let id = productObject.id;
-
+  // dispatch function
   const dispatch = useDispatch();
+  // trigger for popup
   const [trigger, setTrigger] = useState(false);
 
+  // item addition to cart
   const addItemToBasket = () => {
     for (let i = 0; i < counter; i++) {
-      // if (counter < 5) {
-      //   incrementQuantity();
-      // }
+      // trigger popup
       setTrigger(true);
+      // after 2s "untrigger" it
       setTimeout(() => {
         setTrigger(false);
       }, 2000);
+      // dispatch the product's details
       const product = {
         id,
         title,
@@ -56,7 +61,7 @@ export default function Product() {
       dispatch(addToBasket(product));
     }
   };
-
+  // quantity counter
   const [counter, setCounter] = useState(1);
 
   // Function is called everytime increment button is clicked
@@ -77,7 +82,9 @@ export default function Product() {
 
   const mountedRef = useRef(true);
   useEffect(() => {
+    //for each product change, scroll to top, reset counter
     window.scrollTo(0, 0);
+    setCounter(1);
     return () => {
       mountedRef.current = false;
     };

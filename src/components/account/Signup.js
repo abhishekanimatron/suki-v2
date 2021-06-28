@@ -1,26 +1,34 @@
-import { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { doesEmailExist } from "../../services/firebase";
-import styled from "styled-components";
-import FirebaseContext from "../../context/firebase";
+
+import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
+import { useHistory } from "react-router-dom";
+
+import { useContext, useEffect, useState } from "react";
+import styled from "styled-components/macro";
+
+import FirebaseContext from "../../context/firebase";
 
 export default function Signup() {
+  //update title
   useEffect(() => {
     document.title = "Create Account - Suki Market";
   }, []);
   const history = useHistory();
+  // values for validation
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  // firebase context
   const { firebase } = useContext(FirebaseContext);
 
+  // invalid if empty
   const isInvalid = password === "" || emailAddress === "";
 
   const [error, setError] = useState("");
 
+  // function for registering
   const handleSignUp = async (event) => {
     event.preventDefault();
     const emailExists = await doesEmailExist(emailAddress);
@@ -43,6 +51,7 @@ export default function Signup() {
           emailAddress: emailAddress.toLowerCase(),
           dateCreated: Date.now(),
         });
+        // on successful registration route to homepage
         history.push(ROUTES.HOME);
       } catch (error) {
         setFirstName("");

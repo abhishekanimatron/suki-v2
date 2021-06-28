@@ -1,24 +1,29 @@
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import { lazy, Suspense } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 import * as ROUTES from "./constants/routes";
 import Loading from "./components/loading";
 
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 
-const Login = lazy(() => import("./pages/account/Login"));
-const Register = lazy(() => import("./pages/account/CreateAccount"));
-const Cart = lazy(() => import("./pages/Cart"));
-const Product = lazy(() => import("./pages/Product"));
-const Home = lazy(() => import("./pages/Home"));
+// lazy imports, imported when accessed
 const Responsibility = lazy(() => import("./pages/Responsibility"));
 const AllProducts = lazy(() => import("./pages/collections/AllProducts"));
 const Blackmoon = lazy(() => import("./pages/collections/Blackmoon"));
 const SukiSpace = lazy(() => import("./pages/collections/SukiSpace"));
 const AnimalCrossing = lazy(() => import("./pages/AnimalCrossing"));
+const Product = lazy(() => import("./pages/Product"));
+
+const Home = lazy(() => import("./pages/Home"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Login = lazy(() => import("./pages/account/Login"));
+const Register = lazy(() => import("./pages/account/CreateAccount"));
+
 const NotFound = lazy(() => import("./pages/notFound"));
 
 function App() {

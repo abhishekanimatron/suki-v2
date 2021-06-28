@@ -1,6 +1,7 @@
 import InstagramIcon from "@material-ui/icons/Instagram";
 import styled from "styled-components";
 
+// footer with newsletter subscription and instagram page button
 export default function FollowFooter() {
   return (
     <ContainerTwo>

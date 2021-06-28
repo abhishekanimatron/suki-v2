@@ -1,23 +1,30 @@
-import * as ROUTES from "../constants/routes";
-import { Link } from "react-router-dom";
-import MenuIcon from "@material-ui/icons/Menu";
-import styled from "styled-components/macro";
-import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
-import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
 import { selectItems } from "../slices/basketSlice";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Search from "./Search";
+import styled from "styled-components/macro";
+
+import * as ROUTES from "../constants/routes";
+import { Link } from "react-router-dom";
+
+import MenuIcon from "@material-ui/icons/Menu";
+import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
+import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
+import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
 
 export default function Header() {
+  // hook to handle whether to show search bar
   const [search, setSearch] = useState(false);
+  // search toggle function
   const handleSearch = () => {
     setSearch(!search);
   };
+  // selector for items list
   const items = useSelector(selectItems);
 
+  // hook to handle whether to show menu, for mobile devices
   const [showMenu, setShowMenu] = useState(false);
+  // menu toggle function
   const handleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -41,6 +48,7 @@ export default function Header() {
           >
             <span id="cart-icon">
               <ShoppingCartRoundedIcon />
+              {/* show items in cart,that is if there is any */}
               {items.length !== 0 && <span> {items.length}</span>}
             </span>
           </Link>

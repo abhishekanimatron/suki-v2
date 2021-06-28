@@ -1,4 +1,6 @@
+//Routes for our pages in url
 export const HOME = "/";
+// dynamic link for each product
 export const PRODUCT = "/product/:itemname";
 export const LOGIN = "/account/login";
 export const REGISTER = "/account/register";

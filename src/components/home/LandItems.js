@@ -1,11 +1,12 @@
-import React from "react";
-import * as ROUTES from "../../constants/routes";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
+import * as ROUTES from "../../constants/routes";
+import { Link } from "react-router-dom";
+
+// bottom carousel
 export default function LandItems() {
   var settings = {
     dots: false,
@@ -31,7 +32,7 @@ export default function LandItems() {
           <img src="/images/carousel/smile-cap.jpg" alt="sc" />
           <HeroContent>
             <h1>Corduroy Cap</h1>
-            <Link to={'/product/18'}>
+            <Link to={"/product/18"}>
               <Button>READ MORE</Button>
             </Link>
           </HeroContent>
@@ -40,7 +41,7 @@ export default function LandItems() {
           <img src="/images/carousel/sock-set.jpg" alt="ss" />{" "}
           <HeroContent>
             <h1>SOCK SET</h1>
-            <Link to={'/product/19'}>
+            <Link to={"/product/19"}>
               <Button>READ MORE</Button>
             </Link>
           </HeroContent>

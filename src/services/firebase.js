@@ -1,8 +1,8 @@
 import { firebase } from "../lib/firebase";
-
+//firebase utitlity functions
 export async function doesEmailExist(emailAddress) {
-  // go inside firebase's firestore's 'users' collection where username is equal to
-  //the username passed in, we get some values of which if value is > 0 the user exists
+  // go inside firebase's firestore's 'users' collection where emailAddress is equal to
+  //the emailAddress passed in, we get some values of which if value is > 0 the emailAddress exists
   const result = await firebase
     .firestore()
     .collection("users")
